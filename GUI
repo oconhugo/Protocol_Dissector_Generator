@@ -1,0 +1,67 @@
+from tkinter import *
+
+def main():
+    root = Tk()
+    #workspace_launcher(root)#
+    #New_Project(root)#
+    #Dissector_Script(root)#
+    root.mainloop()
+
+def workspace_launcher(root):
+    label_1 = Label(root, text="Select a directory as workspace")
+    label_2 = Label(root, text="Workspace")
+    button1 = Button(root, text="Browse")
+    button2 = Button(root, text="Launch")
+    button3 = Button(root, text="Cancel")
+    entry_1 = Entry(root)
+
+    label_1.grid(row=0, column= 1)
+    label_2.grid(row=1)
+    entry_1.grid(row=1, column=1)
+    button1.grid(row=1, column=2)
+    button2.grid(row=2, column= 1)
+    button3.grid(row=2, column= 2)
+
+def New_Project(root):
+    label_1 = Label(root, text="Create a new project")
+    label_2 = Label(root, text="Project Name")
+    label_3 = Label(root, text="Description")
+    entry_1 = Entry(root)
+    entry_2 = Entry(root)
+    button1 = Button(root, text="Create")
+    button2 = Button(root, text="Cancel")
+
+    label_1.grid(row=0, column=1)
+    label_2.grid(row =1, sticky = E)
+    label_3.grid(row=2, sticky = E)
+    entry_1.grid(row=1, column=1)
+    entry_2.grid(row=2, column=1)
+    button1.grid(row=3, column=1, sticky=E)
+    button2.grid(row=3, column=2)
+
+def Dissector_Script(root):
+    label_1 = Label(root, text="Generate a custom dissector script")
+    label_2 = Label(root, text="Project")
+    label_3 = Label(root, text="Dissector Format")
+    label_4 = Label(root, text="Save Location")
+    entry_1 = Entry(root)
+    entry_2 = Entry(root)
+    entry_3 = Entry(root)
+    button1 = Button(root, text="Browse")
+    button2 = Button(root, text="Browse")
+    button3 = Button(root, text="Generate")
+    button4 = Button(root, text="Cancel")
+
+    label_1.grid(row=0, columnspan=3)
+    label_2.grid(row =1, sticky = E)
+    label_3.grid(row=2, sticky = E)
+    label_4.grid(row=3, sticky = E)
+    entry_1.grid(row=1, column=1)
+    entry_2.grid(row=2, column=1)
+    entry_3.grid(row=3,column = 1)
+    button1.grid(row=1, column=2)
+    button2.grid(row=3, column=2)
+    button3.grid(row=4, column=1, sticky=E)
+    button4.grid(row=4, column=2)
+
+main()
