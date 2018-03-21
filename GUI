@@ -1,31 +1,46 @@
 from Tkinter import *
 import Tkinter, Tkconstants, tkFileDialog
 
-dir ="C:"
 def main():
     root = Tk()
-    workspace_launcher(root)
-    #New_Project(root)
-    #Dissector_Script(root)
-    #Project_Import(root)
-    #Project_Export(root)
+    #workspace_launcher(root)
+    #new_project(root)
+    #dissector_script(root)
+    #############################
+    #project_import(root)
+    #project_export(root)
     #PCAP(root)
-    #Organize_Views(root)
+    #organize_views(root)
     root.mainloop()
 
-def Browse_Dir():
-    global dir
+def browse_dir(e):
     directory = tkFileDialog.askdirectory()
     dir = directory
+    e.delete(0, END)
+    e.insert(0, dir)
+
+def save_location(e):
+    filename = tkFileDialog.asksaveasfilename(initialdir="/", title="Select file",
+                                                   filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
+    e.delete(0, END)
+    e.insert(0, filename)
+
+def open_location(e):
+    filename = tkFileDialog.askopenfilename(initialdir="/", title="Select file",
+                                                 filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
+    e.delete(0, END)
+    e.insert(0, filename)
 
 def workspace_launcher(root):
-    global dir
+    dir="C:"
+    entry_1 = Entry(root)
+    entry_1.delete(0, END)  #delete current text in entry
+    entry_1.insert(0, dir)  #insert
     label_1 = Label(root, text="Select a directory as workspace")
     label_2 = Label(root, text="Workspace")
-    button1 = Button(root, text="Browse", command = Browse_Dir)
+    button1 = Button(root, text="Browse", command= lambda: browse_dir(entry_1))
     button2 = Button(root, text="Launch")
-    button3 = Button(root, text="Cancel")
-    entry_1 = Entry(root)
+    button3 = Button(root, text="Cancel", command=root.destroy)
 
     label_1.grid(row=0, column= 1)
     label_2.grid(row=1)
@@ -34,24 +49,24 @@ def workspace_launcher(root):
     button2.grid(row=2, column= 1)
     button3.grid(row=2, column= 2)
 
-def New_Project(root):
+def new_project(root):
     label_1 = Label(root, text="Create a new project")
     label_2 = Label(root, text="Project Name")
     label_3 = Label(root, text="Description")
     entry_1 = Entry(root)
     entry_2 = Entry(root)
     button1 = Button(root, text="Create")
-    button2 = Button(root, text="Cancel")
+    button2 = Button(root, text="Cancel", command=root.destroy)
 
     label_1.grid(row=0, column=1)
     label_2.grid(row =1, sticky = E)
     label_3.grid(row=2, sticky = E)
     entry_1.grid(row=1, column=1)
     entry_2.grid(row=2, column=1)
-    button1.grid(row=3, column=1, sticky=E)
+    button1.grid(row=3, column=1,sticky=E)
     button2.grid(row=3, column=2)
 
-def Dissector_Script(root):
+def dissector_script(root):
     label_1 = Label(root, text="Generate a custom dissector script")
     label_2 = Label(root, text="Project")
     label_3 = Label(root, text="Dissector Format")
@@ -59,10 +74,10 @@ def Dissector_Script(root):
     entry_1 = Entry(root)
     entry_2 = Entry(root)
     entry_3 = Entry(root)
-    button1 = Button(root, text="Browse")
-    button2 = Button(root, text="Browse")
+    button1 = Button(root, text="Browse", command= lambda : open_location(entry_1))
+    button2 = Button(root, text="Browse", command= lambda : save_location(entry_3))
     button3 = Button(root, text="Generate")
-    button4 = Button(root, text="Cancel")
+    button4 = Button(root, text="Cancel", command=root.destroy)
 
     label_1.grid(row=0, columnspan=3)
     label_2.grid(row =1, sticky = E)
@@ -76,13 +91,13 @@ def Dissector_Script(root):
     button3.grid(row=4, column=1, sticky=E)
     button4.grid(row=4, column=2)
 
-def Project_Import(root):
+def project_import(root):
     label_1 = Label(root, text="Import a project into the current workspace")
     label_2 = Label(root, text="Project")
     entry_1 = Entry(root)
     button1 = Button(root, text="Browse")
     button2 = Button(root, text="Import")
-    button3 = Button(root, text="Cancel")
+    button3 = Button(root, text="Cancel", command=root.destroy)
 
     label_1.grid(row=0, columnspan=3)
     label_2.grid(row =1, sticky = E)
@@ -91,7 +106,7 @@ def Project_Import(root):
     button2.grid(row=2, column=1)
     button3.grid(row=2, column=2, sticky=E)
 
-def Project_Export(root):
+def project_export(root):
     label_1 = Label(root, text="Export a project to the local file system")
     label_2 = Label(root, text="Project")
     label_3 = Label(root, text="To export file")
@@ -100,7 +115,7 @@ def Project_Export(root):
     button1 = Button(root, text="Browse")
     button2 = Button(root, text="Browse")
     button3 = Button(root, text="Export")
-    button4 = Button(root, text="Cancel")
+    button4 = Button(root, text="Cancel", command=root.destroy)
 
     label_1.grid(row=0, columnspan=3)
     label_2.grid(row =1, sticky = E)
@@ -112,7 +127,7 @@ def Project_Export(root):
     button3.grid(row=3, column=1, sticky=E)
     button4.grid(row=3, column=2)
 
-def Organize_Views(root):
+def organize_views(root):
     label_1 = Label(root, text="Customize the views")
     label_2 = Label(root, text="Project Navigation")
     label_3 = Label(root, text="Dissector Building Area")
@@ -125,7 +140,7 @@ def Organize_Views(root):
     label_10 = Label(root, text="Show")
     button1 = Button(root, text="Restore to Default")
     button2 = Button(root, text="Confirm")
-    button3 = Button(root, text="Cancel")
+    button3 = Button(root, text="Cancel", command=root.destroy)
     radio_button_Hide_2 = Radiobutton(root)
     radio_button_Hide_3 = Radiobutton(root)
     radio_button_Hide_4 = Radiobutton(root)
@@ -173,7 +188,7 @@ def PCAP(root):
     label_2 = Label(root, text="PCAP Name")
     button1 = Button(root, text="Browse")
     button2 = Button(root, text="Open")
-    button3 = Button(root, text="Cancel")
+    button3 = Button(root, text="Cancel", command=root.destroy)
     entry_1 = Entry(root)
 
     label_1.grid(row=0, columnspan= 3)
@@ -182,5 +197,5 @@ def PCAP(root):
     button1.grid(row=1, column=2)
     button2.grid(row=2, column= 1)
     button3.grid(row=2, column= 2)
-    
+
 main()
