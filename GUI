@@ -6,11 +6,10 @@ def main():
     #workspace_launcher(root)
     #new_project(root)
     #dissector_script(root)
-    #############################
     #project_import(root)
     #project_export(root)
+    organize_views(root)
     #PCAP(root)
-    #organize_views(root)
     root.mainloop()
 
 def browse_dir(e):
@@ -95,7 +94,7 @@ def project_import(root):
     label_1 = Label(root, text="Import a project into the current workspace")
     label_2 = Label(root, text="Project")
     entry_1 = Entry(root)
-    button1 = Button(root, text="Browse")
+    button1 = Button(root, text="Browse", command=lambda : browse_dir(entry_1))
     button2 = Button(root, text="Import")
     button3 = Button(root, text="Cancel", command=root.destroy)
 
@@ -112,8 +111,8 @@ def project_export(root):
     label_3 = Label(root, text="To export file")
     entry_1 = Entry(root)
     entry_2 = Entry(root)
-    button1 = Button(root, text="Browse")
-    button2 = Button(root, text="Browse")
+    button1 = Button(root, text="Browse", command=lambda : browse_dir(entry_1))
+    button2 = Button(root, text="Browse", command =lambda : open_location(entry_2))
     button3 = Button(root, text="Export")
     button4 = Button(root, text="Cancel", command=root.destroy)
 
@@ -184,12 +183,12 @@ def organize_views(root):
     button3.grid(row=9, column=3)
 
 def PCAP(root):
+    entry_1 = Entry(root)
     label_1 = Label(root, text="Open a PCAP file")
     label_2 = Label(root, text="PCAP Name")
-    button1 = Button(root, text="Browse")
+    button1 = Button(root, text="Browse", command=lambda : open_location(entry_1))
     button2 = Button(root, text="Open")
     button3 = Button(root, text="Cancel", command=root.destroy)
-    entry_1 = Entry(root)
 
     label_1.grid(row=0, columnspan= 3)
     label_2.grid(row=1)
