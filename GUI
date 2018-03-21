@@ -1,20 +1,28 @@
-from tkinter import *
+from Tkinter import *
+import Tkinter, Tkconstants, tkFileDialog
 
+dir ="C:"
 def main():
     root = Tk()
-    #workspace_launcher(root)#
-    #New_Project(root)#
-    #Dissector_Script(root)#
-    #Project_Import(root)#
+    workspace_launcher(root)
+    #New_Project(root)
+    #Dissector_Script(root)
+    #Project_Import(root)
     #Project_Export(root)
     #PCAP(root)
-    Organize_Views(root)
+    #Organize_Views(root)
     root.mainloop()
 
+def Browse_Dir():
+    global dir
+    directory = tkFileDialog.askdirectory()
+    dir = directory
+
 def workspace_launcher(root):
+    global dir
     label_1 = Label(root, text="Select a directory as workspace")
     label_2 = Label(root, text="Workspace")
-    button1 = Button(root, text="Browse")
+    button1 = Button(root, text="Browse", command = Browse_Dir)
     button2 = Button(root, text="Launch")
     button3 = Button(root, text="Cancel")
     entry_1 = Entry(root)
@@ -174,4 +182,5 @@ def PCAP(root):
     button1.grid(row=1, column=2)
     button2.grid(row=2, column= 1)
     button3.grid(row=2, column= 2)
+    
 main()
